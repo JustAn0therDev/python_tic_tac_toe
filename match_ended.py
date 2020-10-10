@@ -1,4 +1,6 @@
-def check_matrix_to_end_game(matrix) -> bool:
+from player import Player
+
+def match_ended(matrix, Player) -> bool:
     if matrix[0][0] == matrix[0][1] and matrix[0][1] == matrix[0][2]:
         return True
     elif matrix[2][0] == matrix[2][1] and matrix[2][1] == matrix[2][2]:
