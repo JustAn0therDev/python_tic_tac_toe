@@ -1,5 +1,6 @@
+from Player import Player
 from InputHandler import InputHandler
-from player import Player
+from PlayerFactory import PlayerFactory
 from MatrixHandler import MatrixHandler
 from TerminalHandler import TerminalHandler
 
@@ -8,8 +9,8 @@ matrix = [['?', '?', '?'], ['?', '?', '?'], ['?', '?', '?']]
 terminal_handler = TerminalHandler()
 
 winner = None
-player_one = Player('x', input("Please enter the first player's nickname: "))
-player_two = Player('o', input("Now the second player's nickname: "))
+player_one = PlayerFactory.create_player('x', input("Please enter the first player's nickname: "))
+player_two = PlayerFactory.create_player('o', input("Now the second player's nickname: "))
 current_player = player_one
 
 match_ended = False
@@ -41,4 +42,4 @@ try:
 except Exception as error_message:
     print('Something went wrong! Error: {}'.format(str(error_message)))
 
-terminal_handler.print_winner(winner)
+terminal_handler.print_end_game(winner)
