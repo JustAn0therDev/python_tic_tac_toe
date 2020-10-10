@@ -1,30 +1,44 @@
-from get_player_input import get_player_input
+from InputHandler import InputHandler
 from player import Player
-from match_ended import match_ended
-from print_matrix import print_matrix
+from MatrixHandler import MatrixHandler
+from TerminalHandler import TerminalHandler
 
 matrix = [['?', '?', '?'], ['?', '?', '?'], ['?', '?', '?']]
 
-# player 1 -> player 1 should go first
-# player 2 -> then player 2
+terminal_handler = TerminalHandler()
 
-print_matrix(matrix)
-turn = Player.PLAYER_1
-player_has_won = False
+winner = None
+player_one = Player('x', input("Please enter the first player's nickname: "))
+player_two = Player('o', input("Now the second player's nickname: "))
+current_player = player_one
 
-# handle invalid input exceptions -> done
-# handle array out of bounds exceptions -> should be in the same validate_input function or something similar
+match_ended = False
+
 try:
-    while (not player_has_won):
-        selected_indexes = get_player_input()
+    while (not winner):
+        terminal_handler.print_current_turn(current_player)
 
-        if turn == Player.PLAYER_1:
+        selected_indexes = InputHandler.get_player_input(matrix)
+
+        if current_player.symbol == 'x':
             matrix[selected_indexes[0]][selected_indexes[1]] = 'x'
-            turn = Player.PLAYER_2
         else:
             matrix[selected_indexes[0]][selected_indexes[1]] = 'o'
-            turn = Player.PLAYER_1
-        # player_has_won = check_matrix_to_end_game(matrix)
-        print_matrix(matrix)
-except:
-    pass
+
+        match_ended = MatrixHandler.match_ended(matrix, current_player.symbol)
+
+        if (match_ended):
+            winner = current_player
+        elif not match_ended and MatrixHandler.no_spots_left(matrix):
+            break
+        else:
+            if current_player.symbol == 'x':
+                current_player = player_two
+            else:
+                current_player = player_one
+
+        terminal_handler.print_matrix(matrix)
+except Exception as error_message:
+    print('Something went wrong! Error: {}'.format(str(error_message)))
+
+terminal_handler.print_winner(winner)
