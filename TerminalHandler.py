@@ -11,7 +11,8 @@ class TerminalHandler:
         for i, list in enumerate(matrix):
             print("{}|{}".format(i + 1 ,'|'.join(list)))
     
-    def print_end_game(self, winner):
+    def print_end_game(self, winner, matrix):
+        self.print_matrix(matrix)
         if winner:
             print("And this game's winner is: {}".format(winner.nickname))
         else:
