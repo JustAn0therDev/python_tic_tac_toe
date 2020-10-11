@@ -1,3 +1,5 @@
+import re
+
 class InputValidator:
 
     @staticmethod
@@ -5,7 +7,7 @@ class InputValidator:
         user_input = input('Please select row and column, separated by commas (,): ').split(',')
         try:
             user_input = list(map(lambda x: (int(x) - 1), user_input))
-            if (InputValidator.__input_indexes_are_valid(user_input) and InputValidator.__matrix_index_is_not_taken(user_input, matrix)):
+            if (InputValidator.input_indexes_are_valid(user_input) and InputValidator.matrix_index_is_not_taken(user_input, matrix)):
                 return user_input
             else:
                 return []
@@ -13,7 +15,7 @@ class InputValidator:
             return []
 
     @staticmethod
-    def __input_indexes_are_valid(user_input) -> bool:
+    def input_indexes_are_valid(user_input) -> bool:
         if len(user_input) != 2:
             return False
         elif user_input[0] > 2 or user_input[0] < 0:
@@ -24,7 +26,7 @@ class InputValidator:
         return True
 
     @staticmethod
-    def __matrix_index_is_not_taken(user_input, matrix) -> bool:
+    def matrix_index_is_not_taken(user_input, matrix) -> bool:
         if matrix[user_input[0]][user_input[1]] != '?':
             return False
         return True
