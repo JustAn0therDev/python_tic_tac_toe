@@ -1,4 +1,5 @@
 from Player import Player
+from constants import EMPTY_SPOT_VALUE
 
 class MatrixHandler:
 
@@ -27,7 +28,7 @@ class MatrixHandler:
     def no_spots_left(matrix):
         for _ in matrix:
             for column in matrix:
-                if len(list(filter(lambda cell: cell == '?', column))) > 0:
+                if len(list(filter(lambda cell: cell == EMPTY_SPOT_VALUE, column))) > 0:
                     return False
         
         return True
