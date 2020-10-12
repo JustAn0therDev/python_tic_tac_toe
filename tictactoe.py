@@ -14,8 +14,9 @@ player_one = PlayerFactory.create_player('x', input("Please enter the first play
 player_two = PlayerFactory.create_player('o', input("Now the second player's nickname: "))
 current_player = player_one
 
+
 try:
-    while (not winner):
+    while not winner:
         terminal_handler.print_current_turn(current_player)
         terminal_handler.print_matrix(matrix)
         selected_indexes = InputHandler.get_player_input(matrix)
@@ -27,7 +28,7 @@ try:
 
         match_ended = MatrixHandler.match_ended(matrix, current_player.symbol)
 
-        if (match_ended):
+        if match_ended:
             winner = current_player
         elif not match_ended and MatrixHandler.no_spots_left(matrix):
             break

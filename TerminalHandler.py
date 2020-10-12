@@ -9,7 +9,7 @@ class TerminalHandler:
     def print_matrix(self, matrix) -> None:
         print('  1|2|3')
         for i, list in enumerate(matrix):
-            print("{}|{}".format(i + 1 ,'|'.join(list)))
+            print("{}|{}".format(i + 1, '|'.join(list)))
     
     def print_end_game(self, winner, matrix):
         self.print_matrix(matrix)

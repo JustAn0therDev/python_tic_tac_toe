@@ -1,6 +1,7 @@
 from Player import Player
 from constants import EMPTY_SPOT_VALUE
 
+
 class MatrixHandler:
 
     @staticmethod

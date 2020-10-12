@@ -1,8 +1,10 @@
 import unittest
 from testutils import map_absolute_path
+
 map_absolute_path(num_of_directories_to_go_up=1)
 
 from PlayerFactory import PlayerFactory
+
 
 class PlayerFactoryTests(unittest.TestCase):
 
